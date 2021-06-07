@@ -31,25 +31,25 @@ export class NotesService {
         return await this.noteModel.find({});
     }
 
-    async getNote(id){
-        const note = await this.noteModel.findOne(id);
+    async getNote(_id){
+        const note = await this.noteModel.findOne({_id : _id});
         if(!note){
             throw new NotFoundException('Note not found')
         }
         return note
     }
 
-    async publishNote(id){
-      const note =  await this.getNote(id)
-        await this.noteModel.updateOne({id},{
+    async publishNote(_id){
+      const note =  await this.getNote(_id)
+        await this.noteModel.updateOne({_id},{
             published : !note.published
         })
         return;
     }
 
-    async deleteNote(id){
-        await this.getNote(id)
-        await this.noteModel.findOneAndRemove({id})
+    async deleteNote(_id){
+        await this.getNote(_id)
+        await this.noteModel.findOneAndRemove({_id})
         return;
     }
 }

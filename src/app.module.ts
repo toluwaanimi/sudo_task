@@ -5,7 +5,7 @@ import { AppService } from './app.service';
 import { MongooseModule } from '@nestjs/mongoose';
 
 @Module({
-  imports: [ApiModule,MongooseModule.forRoot('', {
+  imports: [ApiModule,MongooseModule.forRoot('mongodb://localhost/sudo', {
     useNewUrlParser: true,
     useCreateIndex: true,
   }),],
